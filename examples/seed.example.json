@@ -1,0 +1,40 @@
+{
+  "nodes": [
+    {"node_id": "base_mobile", "name": "移动补能一队基地"},
+    {"node_id": "j1", "name": "高速枢纽"},
+    {"node_id": "svc_yangcheng", "name": "阳澄湖服务区"},
+    {"node_id": "stranded", "name": "趴窝点"},
+    {"node_id": "base_tow", "name": "拖车一队基地"}
+  ],
+  "segments": [
+    {"segment_id": "s1", "a": "base_mobile", "b": "j1", "distance_km": 10},
+    {"segment_id": "s2", "a": "j1", "b": "svc_yangcheng", "distance_km": 20},
+    {"segment_id": "s3", "a": "svc_yangcheng", "b": "stranded", "distance_km": 15},
+    {"segment_id": "s4", "a": "base_tow", "b": "j1", "distance_km": 40},
+    {"segment_id": "s5", "a": "j1", "b": "east_only_ramp", "distance_km": 30, "direction": "atob"}
+  ],
+  "stations": [
+    {"station_id": "st_yangcheng", "name": "阳澄湖服务区快充站", "node_id": "svc_yangcheng", "total_ports": 4, "occupied": 1, "queue_length": 0, "avg_charge_minutes": 40}
+  ],
+  "teams": [
+    {
+      "team_id": "t_mobile",
+      "name": "移动补能一队",
+      "org_id": "ORG_A",
+      "base_node": "base_mobile",
+      "capabilities": ["mobile_charging"],
+      "mobile_power_kwh": 20,
+      "duty_windows": [{"start": "00:00", "end": "23:59", "tz": "Asia/Shanghai"}]
+    },
+    {
+      "team_id": "t_tow",
+      "name": "拖车一队",
+      "org_id": "ORG_A",
+      "base_node": "base_tow",
+      "capabilities": ["towing"],
+      "duty_windows": [
+        {"start": "20:00", "end": "08:00", "tz": "Asia/Shanghai", "weekdays": ["mon","tue","wed","thu","fri","sat","sun"]}
+      ]
+    }
+  ]
+}
